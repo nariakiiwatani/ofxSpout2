@@ -50,18 +50,26 @@ bool Sender::setupAuto(const std::string &name, ofTexture &texture, bool invert)
 			break;
 		case GL_RGB10_A2:
 		case GL_RGB10_A2UI:
-			DXGI_FORMAT_R10G10B10A2_UNORM;
+			format = DXGI_FORMAT_R10G10B10A2_UNORM;
 			break;
+		case GL_RGB:
 		case GL_RGB8:
 		case GL_RGB8UI:
 		case GL_RGB8I:
+		case GL_RGB8_SNORM:
+		case GL_RGBA:
 		case GL_RGBA8:
 		case GL_RGBA8UI:
 		case GL_RGBA8I:
+		case GL_RGBA8_SNORM:
 			format = DXGI_FORMAT_R8G8B8A8_UNORM;
 			break;
-		case GL_RGB8_SNORM:
-		case GL_RGBA8_SNORM:
+		case GL_BGR:
+		case GL_BGR_INTEGER:
+			format = DXGI_FORMAT_B8G8R8X8_UNORM;
+			break;
+		case GL_BGRA:
+		case GL_BGRA_INTEGER:
 			format = DXGI_FORMAT_B8G8R8A8_UNORM;
 			break;
 		default:
