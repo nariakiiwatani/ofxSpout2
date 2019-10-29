@@ -2,13 +2,12 @@
 
 #pragma once
 
-#include <gl/glew.h>
 #include <string>
 #include <memory>
-#include "Spout.h"
 #include "ofTexture.h"
 
 class ofEventArgs;
+class SpoutSender;
 
 namespace ofx {
 namespace spout2 {

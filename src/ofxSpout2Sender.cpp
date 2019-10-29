@@ -1,4 +1,5 @@
 #include "ofxSpout2Sender.h"
+#include "SpoutSender.h"
 #include "ofTexture.h"
 #include "ofLog.h"
 #include "ofEvents.h"
@@ -41,10 +42,12 @@ bool Sender::setupAuto(const std::string &name, ofTexture &texture, bool invert)
 		case GL_RGB16:
 		case GL_RGB16UI:
 		case GL_RGB16I:
-		case GL_RGB16_SNORM:
 		case GL_RGBA16:
 		case GL_RGBA16UI:
 		case GL_RGBA16I:
+			format = DXGI_FORMAT_R16G16B16A16_UNORM;
+			break;
+		case GL_RGB16_SNORM:
 		case GL_RGBA16_SNORM:
 			format = DXGI_FORMAT_R16G16B16A16_SNORM;
 			break;
@@ -56,25 +59,19 @@ bool Sender::setupAuto(const std::string &name, ofTexture &texture, bool invert)
 		case GL_RGB8:
 		case GL_RGB8UI:
 		case GL_RGB8I:
-		case GL_RGB8_SNORM:
 		case GL_RGBA:
 		case GL_RGBA8:
 		case GL_RGBA8UI:
 		case GL_RGBA8I:
-		case GL_RGBA8_SNORM:
 			format = DXGI_FORMAT_R8G8B8A8_UNORM;
 			break;
-		case GL_BGR:
-		case GL_BGR_INTEGER:
-			format = DXGI_FORMAT_B8G8R8X8_UNORM;
-			break;
-		case GL_BGRA:
-		case GL_BGRA_INTEGER:
-			format = DXGI_FORMAT_B8G8R8A8_UNORM;
+		case GL_RGB8_SNORM:
+		case GL_RGBA8_SNORM:
+			format = DXGI_FORMAT_R8G8B8A8_SNORM;
 			break;
 		default:
 			ofLogWarning() << "unhandled format";
-			format = DXGI_FORMAT_R8G8B8A8_UINT;
+			format = DXGI_FORMAT_B8G8R8X8_UNORM;
 			break;
 	}
 	if(!setup(name, texture.getWidth(), texture.getHeight(), format)) {
